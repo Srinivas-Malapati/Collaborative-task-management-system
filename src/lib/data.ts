@@ -1,0 +1,78 @@
+import type { Project } from "@/lib/types";
+
+export const PROJECTS: Project[] = [
+  {
+    id: "p1",
+    name: "Home Renovation",
+    description: "Track tasks and dependencies for the renovation plan.",
+    tasks: [
+      {
+        id: "t1",
+        projectId: "p1",
+        title: "Finalize budget & scope",
+        description: "Confirm scope, budget cap, and timeline.",
+        status: "todo",
+        assignedTo: ["You"],
+        configuration: { priority: "high" },
+        dependencies: [],
+      },
+      {
+        id: "t2",
+        projectId: "p1",
+        title: "Hire contractor",
+        description: "Shortlist vendors and schedule walkthroughs.",
+        status: "in_progress",
+        assignedTo: ["Alex"],
+        configuration: { priority: "medium" },
+        dependencies: [],
+      },
+      {
+        id: "t3",
+        projectId: "p1",
+        title: "Order materials",
+        description: "Place orders for paint, flooring, and fixtures.",
+        status: "done",
+        assignedTo: ["Sam"],
+        configuration: { priority: "low" },
+        dependencies: [],
+      },
+    ],
+  },
+  {
+    id: "p2",
+    name: "Product Launch",
+    description: "Coordinate launch tasks across teams.",
+    tasks: [
+      {
+        id: "t4",
+        projectId: "p2",
+        title: "Finalize launch messaging",
+        description: "Lock headline, value props, and email copy.",
+        status: "todo",
+        assignedTo: ["Marketing"],
+        configuration: { priority: "high" },
+        dependencies: [],
+      },
+      {
+        id: "t5",
+        projectId: "p2",
+        title: "QA + bug bash",
+        description: "Run regression and triage critical issues.",
+        status: "in_progress",
+        assignedTo: ["Eng"],
+        configuration: { priority: "high" },
+        dependencies: [],
+      },
+      {
+        id: "t6",
+        projectId: "p2",
+        title: "Publish release notes",
+        description: "Draft notes and align with support.",
+        status: "done",
+        assignedTo: ["PM"],
+        configuration: { priority: "medium" },
+        dependencies: [],
+      },
+    ],
+  },
+];

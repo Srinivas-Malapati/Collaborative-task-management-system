@@ -35,7 +35,7 @@ export type Comment = {
 export type ProjectEvent = {
   id: string;
   projectId: string;
-  type: "task_update" | "comment_add" | "other";
+  type: "task_update" | "comment_add" | "task_add" | "other";
   message: string;
   timestamp: string;
   // For Undo/Redo

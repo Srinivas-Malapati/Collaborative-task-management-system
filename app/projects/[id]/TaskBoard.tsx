@@ -90,6 +90,8 @@ export default function TaskBoard({ project: initialProject }: { project: Projec
   );
   const [comments, setComments] = useState<Comment[]>([]);
   const [commentInput, setCommentInput] = useState("");
+  const [showAddTask, setShowAddTask] = useState(false);
+  const [newTask, setNewTask] = useState({ title: "", description: "", priority: "medium" as "low" | "medium" | "high" });
 
   // Fetch comments when selected task changes
   useEffect(() => {
@@ -144,6 +146,18 @@ export default function TaskBoard({ project: initialProject }: { project: Projec
         });
       } catch (err) {
         console.error("Failed to parse comment", err);
+      }
+    });
+
+    eventSource.addEventListener("task_add", (event) => {
+      try {
+        const newTaskData = JSON.parse(event.data) as Task;
+        setProject((prev) => ({
+          ...prev,
+          tasks: [...prev.tasks, newTaskData],
+        }));
+      } catch (err) {
+        console.error("Failed to parse new task", err);
       }
     });
 

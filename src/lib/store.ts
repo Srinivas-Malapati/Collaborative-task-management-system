@@ -97,6 +97,33 @@ export function getTasksByProject(projectId: string) {
   return getTasks().filter((t) => t.projectId === projectId);
 }
 
+export function createTask(
+  projectId: string,
+  title: string,
+  description: string,
+  assignedTo: string[] = [],
+  priority: "low" | "medium" | "high" = "medium",
+  dependencies: string[] = []
+): Task {
+  const id = `t${getTasks().length + 1}`;
+  const newTask: Task = {
+    id,
+    projectId,
+    title,
+    description,
+    status: "todo",
+    assignedTo,
+    configuration: { priority },
+    dependencies,
+  };
+
+  getTasks().push(newTask);
+  addProjectEvent(projectId, "task_add", `New task created: "${title}"`);
+  notifyListeners(projectId, "task_add", newTask);
+
+  return newTask;
+}
+
 export function updateTaskStatus(taskId: string, next: TaskStatus): UpdateResult {
   const idx = getTasks().findIndex((t) => t.id === taskId);
   if (idx === -1) return { ok: false, error: "Task not found", task: null };
